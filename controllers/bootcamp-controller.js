@@ -1,10 +1,20 @@
 const { insertBootcamp, getBootcamps, updateBootcamp, deleteBootcamp } = require('../models/bootcamp-model');
+const { validateBootcamp } = require('../utils/validation');
 
 // create bootcamp
 exports.createData = (req, res) => {
     // buat variabel penampung data dan query sql
     const data = { ...req.body };
     const querySql = 'INSERT INTO bootcamp SET ?';
+
+    // validasi
+    var errors = validateBootcamp(data);
+    if (errors) {
+        return res.status(400).json({
+            success: false,
+            message: errors[0],
+        });
+    }
 
     // masukkan ke dalam model
     insertBootcamp(res, querySql, data);
