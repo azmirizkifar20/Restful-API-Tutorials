@@ -14,10 +14,10 @@
 npm install
 ```
 
-## Usage
+## Usage (development mode)
 
 ```sh
-node app.js
+npm run dev
 ```
 
 ## Author
